@@ -133,7 +133,7 @@ header.container {
 }
 
 .img-fluid {
-  border-radius: 100px;
+  border-radius: 16px;
 }
 
 .redes-sociais {
@@ -211,13 +211,14 @@ h5 {
 .col-lg-10::before {
   all: unset;
 }
+
 .carousel-inner {
-  border-radius: 100px;
+  border-radius: 16px;
 }
 .carousel-inner img {
   width: 60%;
   height: auto; /* Ajustado para manter a proporção */
-  border-radius: 100px;
+  border-radius: 16px;
 }
 
 .carousel-indicators button:hover,
@@ -341,4 +342,54 @@ textarea {
   .lista-redes-sociais {
     justify-content: center;
   }
+}
+
+
+
+.image-gallery {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.main-image {
+  margin-bottom: 20px 0;
+  width: 100%;
+  max-width:100vw;
+  height: auto;
+  margin: 0 auto;
+}
+
+.main-image img {
+  width: 100%;
+  max-width: 100vw; /* Impede que a imagem ultrapasse a largura da viewport */
+  height: auto;
+  border-radius: 16px;
+}
+
+.thumbnail-carousel {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap; /* Permite que as miniaturas quebrem linha em telas menores */
+}
+
+.thumbnail-carousel img {
+  width: 15%; /* Largura em porcentagem para tornar as miniaturas responsivas */
+  max-width: 100px; /* Limite máximo de largura para miniaturas */
+  height: auto;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5; /* Opacidade baixa para as miniaturas não ativas */
+}
+
+.thumbnail-carousel img:hover {
+  transform: scale(1.1);
+}
+
+.thumbnail-carousel img.active {
+  border: 3px solid var(--bg-orange); /* Estilo da miniatura ativa */
+  opacity: 1; /* Opacidade total para a miniatura ativa */
+  transform: scale(1.1); /* Leve zoom na miniatura ativa */
 }
