@@ -38,9 +38,9 @@ scrollTop.onclick = () => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const images = [
-    "./assets/images/certificados/PostgreSQL.png",
-    "./assets/images/carousel/pexels-christina-morillo-1181610.jpg",
-    "./assets/images/carousel/pexels-cottonbro-studio-7437489.jpg",
+    "./assets/images/certificados/PostgreSQL.webp",
+    "./assets/images/carousel/pexels-christina-morillo-1181610.webp",
+    "./assets/images/carousel/pexels-cottonbro-studio-7437489.webp",
     // Adicione mais URLs de imagens conforme necessário
   ];
 
