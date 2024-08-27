@@ -36,40 +36,54 @@ scrollTop.onclick = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const images = [
-    "./assets/images/certificados/PostgreSQL.webp",
-    "./assets/images/carousel/pexels-christina-morillo-1181610.webp",
-    "./assets/images/carousel/pexels-cottonbro-studio-7437489.webp",
-    // Adicione mais URLs de imagens conforme necessário
-  ];
+const carousel = document.querySelector('.thumbnail-carousel');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let isDown = false;
+let startX;
+let scrollLeft;
 
-  const thumbnailsContainer = document.getElementById("thumbnails");
-  const mainImage = document.getElementById("current-image");
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carousel.classList.add('active');
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+});
 
-  function removeActiveClass() {
-    const thumbnails = document.querySelectorAll(".thumbnail-carousel img");
-    thumbnails.forEach((thumbnail) => {
-      thumbnail.classList.remove("active");
-    });
-  }
+carousel.addEventListener('mouseleave', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
 
-  images.map((image, index) => {
-    const thumbnail = document.createElement("img");
-    thumbnail.src = image;
-    thumbnail.alt = `Imagem ${index + 1}`;
+carousel.addEventListener('mouseup', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
 
-    if (index === 0) {
-      thumbnail.classList.add("active");
-      mainImage.src = image;
-    }
+prevBtn.addEventListener('click', () => {
+  carousel.scrollBy({ left: -200, behavior: 'smooth' });
+});
 
-    thumbnail.addEventListener("click", () => {
-      mainImage.src = image;
-      removeActiveClass();
-      thumbnail.classList.add("active");
-    });
+nextBtn.addEventListener('click', () => {
+  carousel.scrollBy({ left: 200, behavior: 'smooth' });
+});
 
-    thumbnailsContainer.appendChild(thumbnail);
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 2; 
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
+// Função para atualizar a imagem no modal
+const thumbnails = document.querySelectorAll('.thumbnail-carousel img');
+const modalImage = document.getElementById('modalImage');
+
+thumbnails.forEach(thumbnail => {
+  thumbnail.addEventListener('click', function() {
+    const src = this.src;
+    modalImage.src = src;
   });
 });
+
